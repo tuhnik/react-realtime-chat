@@ -12,7 +12,6 @@ class App extends Component {
       chat: []
     }
   }
-
   initSocket(){
     const socket = io(socketURL)
     socket.on("connect", () => {
@@ -40,13 +39,16 @@ class App extends Component {
     return (
       <div className="container">
         {!this.state.username && <Login setUsername={this.setUsername.bind(this)}/>}
-        {this.state.username &&  <div className = "chat">
-          <ul>{this.state.chat.map((el, i)=>{
-            return <li key = {i}>{el.username + ": " + el.msg}</li>
-              })}</ul>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <input type="text" value={this.state.input} onChange={this.handleChange.bind(this)} />
-            </form>
+        {this.state.username &&  <div className = "container chat">
+          <div className = "sidebar"><h1>USERS</h1></div>
+          <div className = "main">
+          <div>{this.state.chat.map((el, i)=>{
+            return <div key = {i}>{el.username + ": " + el.msg}</div>
+              })}
+          </div>
+            <form className = "bottom" onSubmit={this.handleSubmit.bind(this)}>
+              <input className= "input" type="text" value={this.state.input} onChange={this.handleChange.bind(this)} />
+            </form></div>
           </div>}
       </div>
     );

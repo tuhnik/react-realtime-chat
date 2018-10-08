@@ -1,3 +1,6 @@
+html {
+  height: 100vh
+}
 body {
   margin: 0;
   padding: 0;
@@ -7,8 +10,36 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.chat {
+  display: flex;
+  flex-direction: row;
+  height: 100vh
+}
+.main {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.bottom {
+  margin-top: auto
+}
+.sidebar {
+  text-align: center;
+  padding: 5px;
+  width: 200px;
+  background-color: rgb(233, 233, 233);
+}
+/* .chat {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.bottom {
+  margin: auto auto 0 0 ;
+  width: 100vh
+} */

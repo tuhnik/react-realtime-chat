@@ -1,28 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import io from 'socket.io-client'
+import Login from './Login.js'
+const socketURL = "192.168.0.62:1234"
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      username: "",
+      socket: null,
+      input: "",
+      chat: []
+    }
+  }
+
+  initSocket(){
+    const socket = io(socketURL)
+    socket.on("connect", () => {
+      this.setState({socket})
+    })
+    socket.on("msg", (data) => {
+      let chat = [...this.state.chat, data]
+      this.setState({chat})
+    })
+  }
+  handleSubmit(evt){
+    evt.preventDefault()
+    let msg = {username: this.state.username, msg: this.state.input}
+    this.state.socket.emit("msg", msg)
+    this.setState({input: ""})
+  }
+  handleChange(evt){
+    this.setState({input: evt.target.value})
+  }
+  setUsername(username){
+    this.setState({username})
+    this.initSocket()
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        {!this.state.username && <Login setUsername={this.setUsername.bind(this)}/>}
+        {this.state.username &&  <div className = "chat">
+          <ul>{this.state.chat.map((el, i)=>{
+            return <li key = {i}>{el.username + ": " + el.msg}</li>
+              })}</ul>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <input type="text" value={this.state.input} onChange={this.handleChange.bind(this)} />
+            </form>
+          </div>}
       </div>
     );
   }
 }
-
 export default App;

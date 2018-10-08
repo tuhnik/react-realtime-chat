@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "concurrently": "^4.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-scripts": "2.0.4",
+    "socket.io": "^2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"node server\" \"react-scripts start\" ",
+    "react": "react-scripts start",
+    "server": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

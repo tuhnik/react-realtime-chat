@@ -19,9 +19,10 @@ code {
   margin: auto;
 }
 .chat {
+  margin: auto;
   display: flex;
   flex-direction: row;
-  height: 100vh
+  height: 100vh;
 }
 .main {
   padding: 5px;
@@ -29,6 +30,10 @@ code {
   flex-direction: column;
   flex: 1;
 }
+.main > div {
+  overflow: auto;
+}
+
 .bottom {
   margin-top: auto
 }

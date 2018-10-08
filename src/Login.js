@@ -7,14 +7,12 @@ class Login extends Component {
     render(){
         return(
             <React.Fragment>
-
                 <div className = "login">
                 <p>Enter username:</p>
                 <form onSubmit={this.handleSubmit.bind(this)}>
                 <input className="input" type="text"/>
                 </form>
                 </div>
-
             </React.Fragment>
             )
     }

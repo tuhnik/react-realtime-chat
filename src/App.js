@@ -12,6 +12,13 @@ class App extends Component {
       chat: []
     }
   }
+  messagesEnd = React.createRef()
+  scrollToBottom = () => {
+    this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' })
+  }
+  componentDidUpdate(){
+    this.scrollToBottom()
+  }
   initSocket(){
     const socket = io(socketURL)
     socket.on("connect", () => {
@@ -43,8 +50,9 @@ class App extends Component {
           <div className = "sidebar"><h1>USERS</h1></div>
           <div className = "main">
           <div>{this.state.chat.map((el, i)=>{
-            return <div key = {i}>{el.username + ": " + el.msg}</div>
+            return <div className= {(this.state.username === el.username)?"notification is-info":"notification"}  key = {i}>{el.username + ": " + el.msg}</div>
               })}
+              <div ref={this.messagesEnd} />
           </div>
             <form className = "bottom" onSubmit={this.handleSubmit.bind(this)}>
               <input className= "input" type="text" value={this.state.input} onChange={this.handleChange.bind(this)} />

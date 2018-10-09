@@ -4,13 +4,15 @@ class Login extends Component {
         evt.preventDefault()
         this.props.setUsername(evt.target.children[0].value)
         }
+    componentDidMount () {
+            this._input.focus();
+          }
     render(){
         return(
             <React.Fragment>
                 <div className = "login">
-                <p>Enter username:</p>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                <input className="input" type="text"/>
+                <input ref={(c) => this._input = c} className="input" type="text" placeholder= "Enter username..."/>
                 </form>
                 </div>
             </React.Fragment>

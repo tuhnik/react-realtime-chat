@@ -67,11 +67,11 @@ body {
 }
 .chat-bottom > input {
   width: 100%;
-  line-height: 20px;
-  border: none;
-  border: 1px solid gray;
-  border-radius: 3px;
-  box-shadow: none;
   outline: none;
-  padding-left: 5px;
+  padding: 7px 5px 7px 5px;
+  font-size: 15px;
+  line-height: 18px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  background-clip: padding-box;
 }

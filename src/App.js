@@ -37,7 +37,7 @@ class App extends Component {
     })
   }
   timestamp(){
-    return (new Date).toTimeString().slice(0,8);
+    return (new Date()).toTimeString().slice(0,8);
   }
   handleSubmit(evt){
     evt.preventDefault()
@@ -64,7 +64,8 @@ class App extends Component {
           </div>
           <div className = "chat">
           <div className = "chat-top">{this.state.chat.map((el, i)=>{
-            return <div className= {(this.state.username === el.username)?"notification is-info":"notification"}  key = {i}>{"["+ el.time + "] "+ el.username + ": " + el.msg}
+            return <div className= {(this.state.username === el.username)?"notification is-info":"notification"}  key = {i}>{
+              "["+ el.time + "] "+ ((el.username === "Server")?"":el.username + ": ") + el.msg}
                   </div>
               })}
               <div ref={this.messagesEnd} />

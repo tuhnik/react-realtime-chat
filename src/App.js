@@ -15,7 +15,7 @@ class App extends Component {
   }
   messagesEnd = React.createRef()
   scrollToBottom = () => {
-    this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' })
+    this.messagesEnd.current.scrollIntoView({ behavior: 'instant' })
   }
   componentDidUpdate(){
     this.scrollToBottom()

@@ -57,21 +57,21 @@ class App extends Component {
       <div className="wrapper">
         {!this.state.username && <Login setUsername={this.setUsername.bind(this)}/>}
         {this.state.username &&  <div className = "chatroom">
-          <div className = "sidebar"><h1>ONLINE({this.state.userlist.length})</h1>
+          <div className = "sidebar"><div className = "sidebar-header">Online users ({this.state.userlist.length})</div>
           {this.state.userlist.map((el, i)=>{
-            return <div key = {el + i}> {el} </div>
+            return <div className = "userlist-item" key = {el + i}> {el} </div>
           })}
           </div>
           <div className = "chat">
           <div className = "chat-top">{this.state.chat.map((el, i)=>{
-            return <div className= {(this.state.username === el.username)?"notification is-info":"notification"}  key = {i}>{
+            return <div className= {(this.state.username === el.username)?"msg msg-self":"msg"}  key = {i}>{
               "["+ el.time + "] "+ ((el.username === "Server")?"":el.username + ": ") + el.msg}
                   </div>
               })}
               <div ref={this.messagesEnd} />
           </div>
             <form className = "chat-bottom" onSubmit={this.handleSubmit.bind(this)}>
-              <input autoFocus className= "input" type="text" value={this.state.input} onChange={this.handleChange.bind(this)} />
+              <input autoFocus className= "input" type="text" placeholder= "Type here..."value={this.state.input} onChange={this.handleChange.bind(this)} />
             </form>
           </div>
           </div>}

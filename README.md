@@ -9,4 +9,9 @@ Start back-end: ```npm run server```
 
 Start back-end and front-end: ```npm run start```
 
+# Screenshots
+
+![Screenshot](/screenshots/screenshot1.PNG?raw=true)
+![Screenshot](/screenshots/screenshot2.PNG?raw=true)
+
 

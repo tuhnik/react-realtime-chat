@@ -8,29 +8,30 @@ io.on("connection", function(socket) {
   });
   socket.on("connected", function(username) {});
 
-  socket.on("login", function(username) {
-    if (users.filter(user=>user.toLowerCase() === username.toLowerCase()).length) {
+  socket.on("login", function(data) {
+    if (users.filter(user=>user.toLowerCase() === data.username.toLowerCase()).length) {
       socket.emit("loginerror", "Username already taken!");
       return;
     }
-    if (username.length > 20) {
+    if (data.username.length > 20) {
       socket.emit("loginerror", "Username too long!");
       return;
     }
-    if (username.length < 2) {
+    if (data.username.length < 2) {
       socket.emit("loginerror", "Username too short!");
       return;
     }
-    if (username.toLowerCase() === "server") {
+    if (data.username.toLowerCase() === "server") {
       socket.emit("loginerror", "This username is reserved!");
       return;
     }
 
-    socket.emit("login", username);
-    users.push(username);
-    socket.username = username;
+    socket.emit("login", data.username);
+    users.push(data.username);
+    socket.username = data.username;
+    socket.gender = data.gender;
     io.emit("userlist", users);
-    io.emit("msg", { username: "Server", msg: username + " joined" });
+    io.emit("msg", { username: "Server", msg: data.username + " joined", gender: data.gender });
   });
 
   socket.on("disconnect", function() {
@@ -39,7 +40,7 @@ io.on("connection", function(socket) {
     }
     users.splice(users.indexOf(socket.username), 1);
     io.emit("userlist", users);
-    io.emit("msg", { username: "Server", msg: socket.username + " left" });
+    io.emit("msg", { username: "Server", msg: socket.username + " left", gender: socket.gender });
   });
 });
 app.listen(PORT, function() {

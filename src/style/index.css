@@ -65,9 +65,15 @@ outline:none;
 .login-icon{
   display:flex;
   justify-content: center;
-  margin:0 30px 30px 30px;
+  margin:0 40px 40px 40px;
+  border-radius: 3px;
   fill:#cfcfcf;
 }
+
+.login-icon > svg {
+  border-radius: 3px;
+}
+
 .login-input{
   font-size:1.25rem;
   display:block;
@@ -167,10 +173,17 @@ height:auto;
 }
 .msg {
   padding:15px 0;
-  
   border-bottom:1px solid rgba(255, 255, 255, 0.082);
   color:#dcddde;
+  display: flex;
+}
+.msg-server {
+  color: rgba(255, 255, 255, 0.164);
+}
 
+
+.msg-icon{
+  padding-right: 10px;
 }
 .chat-bottom{
 margin:20px;

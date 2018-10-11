@@ -9,7 +9,7 @@ io.on("connection", function(socket) {
   socket.on("connected", function(username) {});
 
   socket.on("login", function(username) {
-    if (users.indexOf(username) > -1) {
+    if (users.filter(user=>user.toLowerCase() === username.toLowerCase()).length) {
       socket.emit("loginerror", "Username already taken!");
       return;
     }

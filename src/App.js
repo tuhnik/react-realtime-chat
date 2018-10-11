@@ -29,7 +29,6 @@ class App extends Component {
     let gender = localStorage.getItem('gender') || "male"
     this.setState({gender})
   }
-
   initSocket(){
     const socket = io(socketURL)
     socket.on("connect", () => {
@@ -75,7 +74,6 @@ class App extends Component {
       this.setState({loginError: "Server is offline!"})
     }
   }
-
   changeGender(){
     let gender = (this.state.gender === "male")?"female":"male";
     this.setState({gender}, ()=>{
@@ -91,6 +89,7 @@ class App extends Component {
         {!this.state.username && <Login gender = {this.state.gender} changeGender = {this.changeGender.bind(this)}loginError ={this.state.loginError} login={this.login.bind(this)}/>}
         {this.state.username &&  <div className = "chatroom">
           <div className = "sidebar"><div className = "sidebar-header">Online users ({this.state.userlist.length})</div>
+          <div className = "userlist">
           {this.state.userlist.map((el, i)=>{
             return (
                 <div className = "userlist-item" key = {el.username + i}>
@@ -101,12 +100,14 @@ class App extends Component {
             )
           })}
           </div>
+          </div>
           <div className = "chat">
           <div className = "chat-top">{this.state.chat.map((el, i)=>{
             return <div className= {(this.state.username === el.username)?"msg msg-self":"msg"}  key = {i}>{
               <React.Fragment>
                <div className = "msg-icon">
-              <svg width="50" height="50">       
+              <svg width="50" height="50">
+              {/* names whith spaces break this   */}
                     <image xlinkHref={"https://avatars.dicebear.com/v2/"+ el.gender +"/"+  ((el.username === "Server")?el.msg.split(" ")[0]:el.username) + ".svg"} width="50" height="50"/>    
               </svg>
               </div>

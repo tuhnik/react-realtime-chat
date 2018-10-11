@@ -77,19 +77,13 @@ class App extends Component {
   }
 
   changeGender(){
-    
-    if(this.state.gender === "male"){
-      this.setState({gender: "female"}, ()=>{
+    let gender = (this.state.gender === "male")?"female":"male";
+    this.setState({gender}, ()=>{
         localStorage.setItem("gender", this.state.gender);
       })
     }
-    else {
-      this.setState({gender: "male"}, ()=>{
-        localStorage.setItem("gender", this.state.gender);
-      })
-    }
-    
-  }
+   
+  
 
   render() {
     return (

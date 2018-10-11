@@ -25,7 +25,9 @@ class App extends Component {
     this.scrollToBottom()
   }
   componentDidMount(){
-    this.initSocket() 
+    this.initSocket()
+    let gender = localStorage.getItem('gender') || "male"
+    this.setState({gender})
   }
 
   initSocket(){
@@ -75,12 +77,18 @@ class App extends Component {
   }
 
   changeGender(){
+    
     if(this.state.gender === "male"){
-      this.setState({gender: "female"})
+      this.setState({gender: "female"}, ()=>{
+        localStorage.setItem("gender", this.state.gender);
+      })
     }
     else {
-      this.setState({gender: "male"})
+      this.setState({gender: "male"}, ()=>{
+        localStorage.setItem("gender", this.state.gender);
+      })
     }
+    
   }
 
   render() {

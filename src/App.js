@@ -58,19 +58,24 @@ class App extends Component {
     evt.preventDefault()
     let msg = {username: this.state.username, msg: this.state.input}
     this.state.socket.emit("msg", msg)
-    this.setState({input: ""})
+    
   }
   handleChange(evt){
     this.setState({input: evt.target.value})
   }
   login(username){
-    this.state.socket.emit("login", username)
+    if(this.state.socket){
+      this.state.socket.emit("login", username)
+    }
+    else {
+      this.setState({loginError: "Server is offline!"})
+    }
   }
 
   render() {
     return (
       <div className="wrapper">
-        {!this.state.username && <Login login={this.login.bind(this)}/>}
+        {!this.state.username && <Login loginError ={this.state.loginError} login={this.login.bind(this)}/>}
         {this.state.username &&  <div className = "chatroom">
           <div className = "sidebar"><div className = "sidebar-header">Online users ({this.state.userlist.length})</div>
           {this.state.userlist.map((el, i)=>{
@@ -87,7 +92,8 @@ class App extends Component {
               <React.Fragment>
               <div className="username">{((el.username === "Server")?"":el.username)}</div>
               <div className="timestamp"> {el.time}</div>
-              <div className="text">{el.msg}</div> </React.Fragment>
+              <div className="text">{el.msg}</div> 
+              </React.Fragment>
             }
                   </div>
               })}

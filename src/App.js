@@ -58,6 +58,7 @@ class App extends Component {
     evt.preventDefault()
     let msg = {username: this.state.username, msg: this.state.input}
     this.state.socket.emit("msg", msg)
+    this.setState({input: ""})
     
   }
   handleChange(evt){

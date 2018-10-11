@@ -93,9 +93,9 @@ class App extends Component {
             return (
                 <div className = "userlist-item" key = {el + i}>
                  <svg width="50" height="50">       
-                    <image xlinkHref={"https://avatars.dicebear.com/v2/" + this.state.gender +"/"+ this.state.userlist[i] + ".svg"} width="50" height="50"/>    
+                    <image xlinkHref={"https://avatars.dicebear.com/v2/" + el.gender +"/"+ el.username + ".svg"} width="50" height="50"/>    
                     </svg>
-                 {el} </div>
+                 {el.username} </div>
             )
           })}
           </div>

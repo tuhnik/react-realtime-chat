@@ -9,7 +9,7 @@ io.on("connection", function(socket) {
   socket.on("connected", function(username) {});
 
   socket.on("login", function(data) {
-    if (users.filter(user=>user.toLowerCase() === data.username.toLowerCase()).length) {
+    if (users.filter(user=>user.username.toLowerCase() === data.username.toLowerCase()).length) {
       socket.emit("loginerror", "Username already taken!");
       return;
     }
@@ -27,7 +27,7 @@ io.on("connection", function(socket) {
     }
 
     socket.emit("login", data.username);
-    users.push(data.username);
+    users.push({username: data.username, gender: data.gender});
     socket.username = data.username;
     socket.gender = data.gender;
     io.emit("userlist", users);

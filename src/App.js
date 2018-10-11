@@ -91,7 +91,7 @@ class App extends Component {
           <div className = "sidebar"><div className = "sidebar-header">Online users ({this.state.userlist.length})</div>
           {this.state.userlist.map((el, i)=>{
             return (
-                <div className = "userlist-item" key = {el + i}>
+                <div className = "userlist-item" key = {el.username + i}>
                  <svg width="50" height="50">       
                     <image xlinkHref={"https://avatars.dicebear.com/v2/" + el.gender +"/"+ el.username + ".svg"} width="50" height="50"/>    
                     </svg>

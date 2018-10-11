@@ -38,9 +38,12 @@ io.on("connection", function(socket) {
     if (!socket.username) {
       return;
     }
-    users.splice(users.indexOf(socket.username), 1);
+
+    users = users.filter(el => el.username !== socket.username)
+    
     io.emit("userlist", users);
     io.emit("msg", { username: "Server", msg: socket.username + " left", gender: socket.gender });
+
   });
 });
 app.listen(PORT, function() {

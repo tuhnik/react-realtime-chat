@@ -1,7 +1,7 @@
 let app = require("http").createServer();
 let io = (module.exports.io = require("socket.io")(app));
 const PORT = process.env.PORT || 1234;
-let users = [];
+let users = [{username: "Valvur", gender: "female"}];
 io.on("connection", function(socket) {
   socket.on("msg", function(data) {
     io.emit("msg", data);
@@ -38,7 +38,6 @@ io.on("connection", function(socket) {
     if (!socket.username) {
       return;
     }
-
     users = users.filter(el => el.username !== socket.username)
     
     io.emit("userlist", users);

@@ -138,20 +138,15 @@ outline:none;
   display:flex;
   align-items: center;
 }
-.userlist-item > svg {
+
+.userlist-item .avatar {
   margin-right: 10px;
-  fill:#dcddde;
 }
+
 .userlist-item:hover{
   background-color:#3c3d3f;
   border-radius: 3px;
 }
-
-.user-icon{
-
-height:auto;
-}
-
 
 .chat{
   width:100%;
@@ -168,7 +163,6 @@ height:auto;
   padding-right: 7.5px;
   margin-right: 7.5px;
   margin-top: 20px;
-  
   font-size:1.25rem;
 }
 .msg {

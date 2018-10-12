@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Avatar from './Avatar.js'
 class Login extends Component {
     constructor(){
         super()
@@ -21,9 +22,7 @@ class Login extends Component {
             <React.Fragment>
                 <div className = "login">
                     <div className="login-icon" onClick={this.props.changeGender}>
-                    <svg width="90" height="90">       
-                    <image xlinkHref={"https://avatars.dicebear.com/v2/"+this.props.gender+"/"+ this.state.input + ".svg"} width="90" height="90"/>    
-                    </svg>
+                        <Avatar seed = {this.state.input} gender={this.props.gender}/>
                     </div>    
                     <form onSubmit={this.handleSubmit.bind(this)}>
                     {this.props.loginError && <div className = "login-error-container"><div className = "login-error">{this.props.loginError}</div></div>} 

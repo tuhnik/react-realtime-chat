@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
 import Login from './Login.js'
+import Avatar from './Avatar.js'
 const socketURL = "localhost:1234"
 class App extends Component {
   constructor(props){
@@ -93,10 +94,8 @@ class App extends Component {
           {this.state.userlist.map((el, i)=>{
             return (
                 <div className = "userlist-item" key = {el.username + i}>
-                 <svg width="50" height="50">       
-                    <image xlinkHref={"https://avatars.dicebear.com/v2/" + el.gender +"/"+ el.username + ".svg"} width="50" height="50"/>    
-                    </svg>
-                 {el.username} </div>
+                <Avatar gender={el.gender} seed={el.username} width="50px" height="50px"/>
+                <div className="text"> {el.username} </div></div>
             )
           })}
           </div>
@@ -105,18 +104,14 @@ class App extends Component {
           <div className = "chat-top">{this.state.chat.map((el, i)=>{
             return <div className= {(this.state.username === el.username)?"msg msg-self":"msg"}  key = {i}>{
               <React.Fragment>
-               <div className = "msg-icon">
-              <svg width="50" height="50">
-              {/* names whith spaces break this   */}
-                    <image xlinkHref={"https://avatars.dicebear.com/v2/"+ el.gender +"/"+  ((el.username === "Server")?el.msg.split(" ")[0]:el.username) + ".svg"} width="50" height="50"/>    
-              </svg>
-              </div>
-              
-              <div className = {(el.username === "Server")?"msg-server":"msg-text"}> 
-              <div className="username">{((el.username === "Server")?"":el.username)}</div>
-              <div className="timestamp"> {el.time}</div>
-              <div className="text">{el.msg}</div> 
-              </div>
+                <div className = "msg-icon">
+                  <Avatar gender = {el.gender} seed ={((el.username === "Server")?el.msg.split(" ")[0]:el.username)} width="50px" height="50px"/>
+                </div>        
+                <div className = {(el.username === "Server")?"msg-server":"msg-text"}> 
+                  <div className="username">{((el.username === "Server")?"":el.username)}</div>
+                  <div className="timestamp"> {el.time}</div>
+                  <div className="text">{el.msg}</div> 
+                </div>
              
               </React.Fragment>
             }

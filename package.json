@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@dicebear/avatars": "^2.0.4",
+    "@dicebear/avatars-female-sprites": "^1.0.4",
+    "@dicebear/avatars-male-sprites": "^1.0.4",
     "concurrently": "^4.0.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

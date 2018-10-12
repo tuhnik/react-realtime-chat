@@ -1,7 +1,7 @@
 let app = require("http").createServer();
 let io = (module.exports.io = require("socket.io")(app));
 const PORT = process.env.PORT || 1234;
-let users = [{username: "Valvur", gender: "female"}];
+let users = [{username: "Security", gender: "female"}];
 io.on("connection", function(socket) {
   socket.on("msg", function(data) {
     io.emit("msg", data);

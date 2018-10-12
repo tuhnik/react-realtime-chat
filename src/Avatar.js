@@ -24,7 +24,7 @@ class Avatar extends React.Component {
         } 
         let avatars = new Avatars(sprites);
         let svg = avatars.create(seed);
-        if(seed === "Valvur"){
+        if(seed === "Security"){
             this.setState({svg:botsvg(this.props.width, this.props.height)})
         }
         else {

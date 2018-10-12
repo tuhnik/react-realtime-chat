@@ -52,9 +52,7 @@ class App extends Component {
       this.setState({userlist})
     })
     socket.on("login", (username)=>{
-      this.setState({logged: true})
-      this.setState({username}) 
-      this.setState({loginError: null})
+      this.setState({logged: true, username, loginError: null})
     })
     socket.on("loginerror", (error)=>{
       this.setState({loginError: error})

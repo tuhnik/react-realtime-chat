@@ -12,6 +12,7 @@ class App extends Component {
       socket: null,
       input: "",
       gender: "male",
+      logged: false,
       loginError: "",
       chat: []
     }
@@ -34,24 +35,36 @@ class App extends Component {
     const socket = io(socketURL)
     socket.on("connect", () => {
       this.setState({socket})
-      socket.emit("connected", this.state.username)
     })
     socket.on("msg", (data) => {
+      if(!this.state.logged){
+        return;
+      }
       data.time = this.timestamp()
       let chat = [...this.state.chat, data]
       this.setState({chat})
     })
     socket.on("userlist", (data) => {
+      if(!this.state.logged){
+        return;
+      }
       let userlist = data
       this.setState({userlist})
     })
     socket.on("login", (username)=>{
+      this.setState({logged: true})
       this.setState({username}) 
       this.setState({loginError: null})
     })
     socket.on("loginerror", (error)=>{
       this.setState({loginError: error})
     })
+    // socket.on("reconnect", ()=>{
+    //   this.setState({socket}, ()=>{
+    //     this.state.socket.emit("login", {username:this.state.username, gender: this.state.gender})
+    //   })
+      
+    // })
 
   }
   timestamp(){

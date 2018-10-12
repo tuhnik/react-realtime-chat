@@ -184,8 +184,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.082);
   border-image: linear-gradient(to right, #484c52, #36393f);
   border-image-slice: 1;
-
-  word-break: break-all;
+  word-break: break-word;
   color: #dcddde;
   display: flex;
 }

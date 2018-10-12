@@ -105,6 +105,7 @@ class App extends Component {
             return <div className= {(this.state.username === el.username)?"msg msg-self":"msg"}  key = {i}>{
               <React.Fragment>
                 <div className = "msg-icon">
+               {/* temporary - breaks names with spaces */}
                   <Avatar gender = {el.gender} seed ={((el.username === "Server")?el.msg.split(" ")[0]:el.username)} width="50px" height="50px"/>
                 </div>        
                 <div className = {(el.username === "Server")?"msg-server":"msg-text"}> 
@@ -112,7 +113,6 @@ class App extends Component {
                   <div className="timestamp"> {el.time}</div>
                   <div className="text">{el.msg}</div> 
                 </div>
-             
               </React.Fragment>
             }
                   </div>

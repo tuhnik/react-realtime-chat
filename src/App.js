@@ -12,7 +12,7 @@ class App extends Component {
       socket: null,
       input: "",
       gender: "male",
-      loginError: null,
+      loginError: "",
       chat: []
     }
   }
@@ -93,8 +93,8 @@ class App extends Component {
           <div className = "userlist">
           {this.state.userlist.map((el, i)=>{
             return (
-                <div className = "userlist-item" key = {el.username + i}>
-                <Avatar gender={el.gender} seed={el.username} width="50px" height="50px"/>
+                <div className = "userlist-item" key = {i}>
+                  <Avatar gender={el.gender} seed={el.username} width="30px" height="30px"/>
                 <div className="text"> {el.username} </div></div>
             )
           })}
@@ -119,7 +119,7 @@ class App extends Component {
               })}
               <div ref={this.messagesEnd} />
           </div>
-            <form className = "chat-bottom" onSubmit={this.handleSubmit.bind(this)}>
+            <form className = "chat-bottom" onSubmit={this.handleSubmit.bind(this)}>           
               <input autoFocus className= "input" type="text" placeholder= "Type here..."value={this.state.input} onChange={this.handleChange.bind(this)} />
             </form>
           </div>

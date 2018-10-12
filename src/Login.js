@@ -21,11 +21,11 @@ class Login extends Component {
         return(
             <React.Fragment>
                 <div className = "login">
+                <div className = "login-hint"><div>{this.props.loginError || "Click me to change my gender"}</div></div>
                     <div className="login-icon" onClick={this.props.changeGender}>
                         <Avatar seed = {this.state.input} gender={this.props.gender}/>
                     </div>    
                     <form onSubmit={this.handleSubmit.bind(this)}>
-                    {this.props.loginError && <div className = "login-error-container"><div className = "login-error">{this.props.loginError}</div></div>} 
                         <input onChange={this.handleChange.bind(this)} ref={(c) => this._input = c} className="login-input" type="text" placeholder= "Enter username..."/> 
                         <button className="login-button" type="submit">Continue</button>          
                     </form>              

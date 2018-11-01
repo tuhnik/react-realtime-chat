@@ -183,9 +183,12 @@ body {
   padding: 15px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.082);
   border-image: linear-gradient(to right, #484c52, #36393f);
+  -webkit-border-image: -webkit-linear-gradient(left, #484c52, #36393f);
   border-image-slice: 1;
+  -webkit-border-image-slice: 1;
   word-break: break-word;
   color: #dcddde;
+  border-color: transparent;
   display: flex;
 }
 .msg-server {
